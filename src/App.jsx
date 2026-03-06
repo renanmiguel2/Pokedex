@@ -1,10 +1,10 @@
-import Seacrh from "./components/Search"
+import Search from "./components/Search"
 
 function App() {
 
   return (
     <div>
-      <Seacrh />
+      <Search />
     </div>
   )
 }
