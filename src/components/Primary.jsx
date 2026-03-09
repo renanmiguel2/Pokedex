@@ -1,28 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import typeColors  from "../utils/colors"
 
 function Primary() {
-    const typeColors = {
-        grass: "bg-green-500",
-        fire: "bg-red-500",
-        water: "bg-blue-500",
-        electric: "bg-yellow-400",
-        bug: "bg-lime-500",
-        normal: "bg-gray-400",
-        poison: "bg-purple-500",
-        ground: "bg-yellow-700",
-        fairy: "bg-pink-400",
-        fighting: "bg-orange-700",
-        psychic: "bg-pink-600",
-        rock: "bg-stone-500",
-        ghost: "bg-indigo-500",
-        ice: "bg-cyan-300",
-        dragon: "bg-indigo-700",
-        dark: "bg-gray-800",
-        steel: "bg-gray-500",
-        flying: "bg-sky-400",
-    };
-
 
     const [pokemons, setPokemons] = useState([])
     const [nextPage, setNextPage] = useState(null)
@@ -60,7 +40,6 @@ function Primary() {
                 )}
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 max-w-4xl mx-auto justify-center">
                 {pokemons.map((pokemon) => {
-                    const type = pokemon.types[0].type.name
 
                     return (
 
@@ -75,7 +54,7 @@ function Primary() {
                                 {pokemon.id.toString().padStart(3, "0")}
                             </h2>
 
-                            <h2 className={`text-sm md:text-md font-semibold text-white py-1 px-3 text-center rounded ${typeColors[type]} min-w-25`}>
+                            <h2 className={`text-sm md:text-md font-semibold text-white py-1 px-3 text-center rounded ${typeColors[pokemon.types[0].type.name]} min-w-25`}>
                                 {pokemon.types.map((t) => t.type.name).join(", ")}
                             </h2>
                         </div>
@@ -101,9 +80,9 @@ function Primary() {
                         Próxima
                     </button>
                 )}
-            </div>
+            </div>        
         </div>
-    );
+    )
 }
 
 export default Primary;

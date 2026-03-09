@@ -1,5 +1,7 @@
 import { useRef, useState } from "react"
 import axios from "axios"
+import Card from "./Card"
+import Primary from "./Primary"
 
 function Search() {
     const [pokemon, setPokemon] = useState(null)
@@ -7,13 +9,13 @@ function Search() {
     const inputRef = useRef()
     async function busca() {
         const nome = inputRef.current.value.toLowerCase()
-        if(!nome) {
+        if (!nome) {
             setError("Por favor, insira o nome de um Pokémon.")
             setPokemon(null)
             return
         }
         const url = `https://pokeapi.co/api/v2/pokemon/${nome}`
-        try {    
+        try {
             const response = await axios.get(url)
             const data = response.data
             setPokemon(data)
@@ -30,7 +32,10 @@ function Search() {
                 <input type="text" placeholder="Procure um Pokémon..." ref={inputRef} className="bg-white md:w-135 px-2 py-2 rounded-xl outline-none" />
                 <button onClick={busca} className="bg-black text-white px-3 rounded-xl hover:bg-gray-800 duration-100 ease-in-out cursor-pointer">Pesquisar</button>
             </div>
+            <div className="mt-20">
                 {error && <p className="text-red-500 mt-2">{error}</p>}
+                {pokemon ? <Card pokemon={pokemon} /> : <Primary />}
+            </div>
         </div>
     )
 }
