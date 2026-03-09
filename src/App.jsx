@@ -1,3 +1,4 @@
+import Primary from "./components/Primary"
 import Search from "./components/Search"
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
     <div>
       <Search />
+      <Primary />
     </div>
   )
 }
